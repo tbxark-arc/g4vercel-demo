@@ -2,9 +2,9 @@
 
 > Deploy go web server in vercel
 
-The Go Runtime is used by Vercel to compile Go Serverless Functions that expose a single HTTP handler, from a .go file within an /api directory at your project's root.
+The Go Runtime is used by Vercel to compile Go Serverless Functions that expose a single HTTP handler, from a `.go` file within an `/api` directory at your project's root.
 
-For example, define an index.go file inside an /api directory as follows:
+For example, define an `index.go` file inside an `/api` directory as follows:
 
 package handler
 
@@ -57,4 +57,4 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 
 ```
 
-An example index.go file inside an /api directory.
+An example `index.go` file inside an `/api` directory.
