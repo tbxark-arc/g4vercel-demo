@@ -62,8 +62,7 @@ An example `index.go` file inside an `/api` directory.
 
 
 
-
-### Config
+## Config
 
 You must add `vercel.json` to forward all path requests to `api/index.go`, then you can use code to control routing, otherwise you will use vercel default routing forwarding
 
