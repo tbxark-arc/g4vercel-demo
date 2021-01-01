@@ -8,7 +8,14 @@ import (
 
 
 func Handler(w http.ResponseWriter, r *http.Request) {
-	server := gee.Default()
+	server := gee.New()
+	server.Use(gee.Recovery(func(err interface{}, c *gee.Context) bool {
+		message := fmt.Sprintf("%s", err)
+		c.JSON(500, gee.H{
+			"error": message,
+		})
+		return true
+	}))
 	server.GET("/", func(context *gee.Context) {
 		context.JSON(200, gee.H{
 			"status": "OK",
