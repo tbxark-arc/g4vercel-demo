@@ -10,10 +10,17 @@ import (
 func Handler(w http.ResponseWriter, r *http.Request) {
 	server := gee.New()
 	server.Use(gee.Recovery(func(err interface{}, c *gee.Context) bool {
-		message := fmt.Sprintf("%s", err)
-		c.JSON(500, gee.H{
-			"error": message,
-		})
+		if httpError, ok := err.(gee.HttpError); ok {
+			c.JSON(httpError.Status, gee.H{
+				"error": httpError.Error(),
+			})
+		} else {
+			message := fmt.Sprintf("%s", err)
+			c.JSON(500, gee.H{
+				"error": message,
+			})
+		}
+
 		return true
 	}))
 	server.GET("/", func(context *gee.Context) {
